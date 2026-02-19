@@ -17,7 +17,7 @@ def predict():
 def windapi():
     city=request.form.get("city")
 
-    apikey="aa216216ed717b2347ecafdbfe2b7c02"
+    apikey="API_KEY"
     url="http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+apikey
 
     resp=requests.get(url).json()
