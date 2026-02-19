@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wind Energy Prediction</title>
+
+<style>
+body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f4f7fb;
+    color:#2b2b2b;
+}
+
+.header{
+    background:#1f3c88;
+    color:white;
+    padding:25px;
+    text-align:center;
+    font-size:28px;
+}
+
+.main{
+    display:flex;
+    justify-content:space-evenly;
+    margin:40px;
+}
+
+.panel{
+    width:42%;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.panel h3{
+    color:#1f3c88;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+button{
+    padding:10px 22px;
+    background:#4ea8de;
+    border:none;
+    color:white;
+    font-size:15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.weather p{
+    margin:6px 0;
+}
+
+.note{
+    font-size:14px;
+    color:#555;
+    margin-top:10px;
+}
+
+.result{
+    margin-top:20px;
+    font-size:18px;
+    color:#38b000;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+Wind Energy Prediction Dashboard
+</div>
+
+<div class="main">
+
+<!-- Weather Section -->
+<div class="panel">
+<h3>Weather Conditions</h3>
+
+<form action="/windapi" method="post">
+<input name="city" placeholder="Enter City Name">
+<br>
+<button>Get Weather Details</button>
+</form>
+
+<div class="weather">
+<p>Temperature : {{temp}}</p>
+<p>Humidity : {{humid}}</p>
+<p>Pressure : {{pressure}}</p>
+<p>Wind Speed : {{speed}}</p>
+</div>
+</div>
+
+<!-- Prediction Section -->
+<div class="panel">
+<h3>Energy Prediction</h3>
+
+<form action="/y_predict" method="post">
+<input name="tp" placeholder="Theoretical Power (KWh)">
+<input name="ws" placeholder="Wind Speed (m/s)">
+<button>Predict Energy</button>
+</form>
+
+<p class="note">
+Enter the theoretical power and wind speed values to estimate
+the wind turbine energy output.
+</p>
+
+<div class="result">
+{{prediction_text}}
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
